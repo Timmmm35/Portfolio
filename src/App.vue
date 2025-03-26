@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <h1>Welcome to My Portfolio</h1>
+    <h1 class="heading-line">Welcome to My Portfolio</h1>
+    <h3 id="author-line">brought to you by: Dequan Brown</h3>
+    <button>Click to continue</button>
     <ThreeScene />
   </div>
 </template>
@@ -15,7 +17,18 @@ export default {
 
 <style>
 #app {
-  text-align: center;
-  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content:  left;
+  align-content: top;
+  width: 30vw;
+  height: 100vh;
 }
+.heading-line {
+  font-size: 50px;
+  margin-left: 50px;
+  margin-top: 50px;
+  color: black;
+}
+
 </style>
