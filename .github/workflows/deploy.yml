@@ -1,0 +1,37 @@
+name: Deploy Vue 3 + Vite + GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Run when pushing to main
+
+permissions:
+  contents: write  # Required to push changes
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Disable Jekyll (Fix GitHub Pages)
+        run: echo "" > dist/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Deploy to gh-pages branch
+          folder: dist  # Deploy built files (not as a .tar)
+          clean: true  # Remove old files
