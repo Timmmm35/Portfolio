@@ -16,11 +16,19 @@
         const renderer = new THREE.WebGLRenderer({ canvas: threeCanvas.value });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
-  
+        //Cube
         const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
+        //Lighting
+        const AmbientLight = new THREE.AmbientLight( 0x404040 ); // soft white light
+        const color = 0xFFFFFF;
+        const intensity = 3;
+        const light = new THREE.DirectionalLight(color, intensity);
+        light.position.set(-1, 2, 4);
+        scene.add(light);
+        scene.add( AmbientLight );
   
         camera.position.z = 5;
   
